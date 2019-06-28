@@ -1,0 +1,39 @@
+{
+    "name": "newtonproject/hep-sdk",
+    "description": "Implement of HEP sdk for PHP",
+    "keywords": [
+        "php",
+        "hep",
+        "newtonproject"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "newton-app",
+            "email": "newton-app@newtonproject.org"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2",
+        "simplito/elliptic-php": "1.0.4",
+        "kornrunner/keccak": "^1.0",
+        "ramsey/uuid": "^3.8",
+        "sop/crypto-encoding": "^0.2.0",
+        "sop/crypto-types": "^0.2.1",
+        "stephenhill/base58": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "squizlabs/php_codesniffer": "~2.6"
+    },
+    "autoload": {
+        "psr-4": { "HepRestApi\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "HepRestApi\\" : "test/" }
+    }
+}
