@@ -41,7 +41,7 @@ class AuthHelper extends BaseHelper
         $final_data = $this->sign_secp256r1($hmac_data);
         # start request
         $auth_cache    = new AuthCacheRequest($final_data);
-        $auth_response = $this->api_client->restNewnetCachesAuthCreate($auth_cache, $this->api_version);
+        $auth_response = $this->api_client->restNewnetCachesAuthCreate($this->api_version, $auth_cache);
         return $auth_response;
     }
 

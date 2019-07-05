@@ -63,7 +63,7 @@ class PayHelper extends BaseHelper
 
         # start request
         $auth_cache    = new PayCacheRequest($final_data);
-        $auth_response = $this->api_client->restNewnetCachesPayCreate($auth_cache, $this->api_version);
+        $auth_response = $this->api_client->restNewnetCachesPayCreate($this->api_version, $auth_cache);
         return $auth_response;
     }
 
