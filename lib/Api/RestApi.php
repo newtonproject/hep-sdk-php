@@ -65,8 +65,8 @@ class RestApi
     protected $headerSelector;
 
     /**
-     * @param ClientInterface $client
      * @param Configuration   $config
+     * @param ClientInterface $client
      * @param HeaderSelector  $selector
      */
     public function __construct(
