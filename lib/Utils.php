@@ -37,7 +37,7 @@ class Utils
             }
             $n = $n + 1;
             if (is_array($val)) {
-                $sign_string = $sign_string . $key . "=" . json_encode($val, JSON_UNESCAPED_UNICODE);
+                $sign_string = $sign_string . $key . "=" . json_encode($val, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             } else {
                 $sign_string = $sign_string . $key . "=" . $val;
             }
