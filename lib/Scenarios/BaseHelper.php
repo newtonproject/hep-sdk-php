@@ -56,7 +56,8 @@ class BaseHelper
 
     /**
      * Retrieve the public key of default trust oracle from hep node
-     * @return string The public key of default trust oracle
+     * @return mixed The public key of default trust oracle
+     * @throws \HepRestApi\ApiException
      */
     public function get_default_trust_oracle()
     {

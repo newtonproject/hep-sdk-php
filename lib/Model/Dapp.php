@@ -45,17 +45,17 @@ class Dapp implements ModelInterface, ArrayAccess
     const DISCRIMINATOR = null;
 
     /**
-      * The original name of the model.
-      *
-      * @var string
-      */
+     * The original name of the model.
+     *
+     * @var string
+     */
     protected static $swaggerModelName = 'Dapp';
 
     /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $swaggerTypes = [
         'dapp_id' => 'string',
         'dapp_name' => 'string',
@@ -74,10 +74,10 @@ class Dapp implements ModelInterface, ArrayAccess
     ];
 
     /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @var string[]
+     */
     protected static $swaggerFormats = [
         'dapp_id' => null,
         'dapp_name' => null,
@@ -223,9 +223,9 @@ class Dapp implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -292,8 +292,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['icon'] === null) {
             $invalidProperties[] = "'icon' can't be null";
         }
-        if ((mb_strlen($this->container['icon']) > 64)) {
-            $invalidProperties[] = "invalid value for 'icon', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['icon']) > 256)) {
+            $invalidProperties[] = "invalid value for 'icon', the character length must be smaller than or equal to 256.";
         }
 
         if ((mb_strlen($this->container['icon']) < 1)) {
@@ -303,8 +303,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['dapp_public_key'] === null) {
             $invalidProperties[] = "'dapp_public_key' can't be null";
         }
-        if ((mb_strlen($this->container['dapp_public_key']) > 64)) {
-            $invalidProperties[] = "invalid value for 'dapp_public_key', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['dapp_public_key']) > 130)) {
+            $invalidProperties[] = "invalid value for 'dapp_public_key', the character length must be smaller than or equal to 130.";
         }
 
         if ((mb_strlen($this->container['dapp_public_key']) < 1)) {
@@ -347,8 +347,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['website'] === null) {
             $invalidProperties[] = "'website' can't be null";
         }
-        if ((mb_strlen($this->container['website']) > 64)) {
-            $invalidProperties[] = "invalid value for 'website', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['website']) > 256)) {
+            $invalidProperties[] = "invalid value for 'website', the character length must be smaller than or equal to 256.";
         }
 
         if ((mb_strlen($this->container['website']) < 1)) {
@@ -375,8 +375,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['auth_login_callback'] === null) {
             $invalidProperties[] = "'auth_login_callback' can't be null";
         }
-        if ((mb_strlen($this->container['auth_login_callback']) > 64)) {
-            $invalidProperties[] = "invalid value for 'auth_login_callback', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['auth_login_callback']) > 256)) {
+            $invalidProperties[] = "invalid value for 'auth_login_callback', the character length must be smaller than or equal to 256.";
         }
 
         if ((mb_strlen($this->container['auth_login_callback']) < 1)) {
@@ -386,8 +386,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['pay_order_callback'] === null) {
             $invalidProperties[] = "'pay_order_callback' can't be null";
         }
-        if ((mb_strlen($this->container['pay_order_callback']) > 64)) {
-            $invalidProperties[] = "invalid value for 'pay_order_callback', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['pay_order_callback']) > 256)) {
+            $invalidProperties[] = "invalid value for 'pay_order_callback', the character length must be smaller than or equal to 256.";
         }
 
         if ((mb_strlen($this->container['pay_order_callback']) < 1)) {
@@ -397,8 +397,8 @@ class Dapp implements ModelInterface, ArrayAccess
         if ($this->container['proof_submit_callback'] === null) {
             $invalidProperties[] = "'proof_submit_callback' can't be null";
         }
-        if ((mb_strlen($this->container['proof_submit_callback']) > 64)) {
-            $invalidProperties[] = "invalid value for 'proof_submit_callback', the character length must be smaller than or equal to 64.";
+        if ((mb_strlen($this->container['proof_submit_callback']) > 256)) {
+            $invalidProperties[] = "invalid value for 'proof_submit_callback', the character length must be smaller than or equal to 256.";
         }
 
         if ((mb_strlen($this->container['proof_submit_callback']) < 1)) {
@@ -501,8 +501,8 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setIcon($icon)
     {
-        if ((mb_strlen($icon) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $icon when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($icon) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $icon when calling Dapp., must be smaller than or equal to 256.');
         }
         if ((mb_strlen($icon) < 1)) {
             throw new \InvalidArgumentException('invalid length for $icon when calling Dapp., must be bigger than or equal to 1.');
@@ -532,8 +532,8 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setDappPublicKey($dapp_public_key)
     {
-        if ((mb_strlen($dapp_public_key) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $dapp_public_key when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($dapp_public_key) > 130)) {
+            throw new \InvalidArgumentException('invalid length for $dapp_public_key when calling Dapp., must be smaller than or equal to 130.');
         }
         if ((mb_strlen($dapp_public_key) < 1)) {
             throw new \InvalidArgumentException('invalid length for $dapp_public_key when calling Dapp., must be bigger than or equal to 1.');
@@ -566,9 +566,9 @@ class Dapp implements ModelInterface, ArrayAccess
         if ((mb_strlen($package_name) > 64)) {
             throw new \InvalidArgumentException('invalid length for $package_name when calling Dapp., must be smaller than or equal to 64.');
         }
-        if ((mb_strlen($package_name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $package_name when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($package_name) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $package_name when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['package_name'] = $package_name;
 
@@ -597,9 +597,9 @@ class Dapp implements ModelInterface, ArrayAccess
         if ((mb_strlen($bundle_id) > 64)) {
             throw new \InvalidArgumentException('invalid length for $bundle_id when calling Dapp., must be smaller than or equal to 64.');
         }
-        if ((mb_strlen($bundle_id) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $bundle_id when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($bundle_id) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $bundle_id when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['bundle_id'] = $bundle_id;
 
@@ -628,9 +628,9 @@ class Dapp implements ModelInterface, ArrayAccess
         if ((mb_strlen($schema) > 64)) {
             throw new \InvalidArgumentException('invalid length for $schema when calling Dapp., must be smaller than or equal to 64.');
         }
-        if ((mb_strlen($schema) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $schema when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($schema) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $schema when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['schema'] = $schema;
 
@@ -656,8 +656,8 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setWebsite($website)
     {
-        if ((mb_strlen($website) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $website when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($website) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $website when calling Dapp., must be smaller than or equal to 256.');
         }
         if ((mb_strlen($website) < 1)) {
             throw new \InvalidArgumentException('invalid length for $website when calling Dapp., must be bigger than or equal to 1.');
@@ -766,12 +766,12 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setAuthLoginCallback($auth_login_callback)
     {
-        if ((mb_strlen($auth_login_callback) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $auth_login_callback when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($auth_login_callback) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $auth_login_callback when calling Dapp., must be smaller than or equal to 256.');
         }
-        if ((mb_strlen($auth_login_callback) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $auth_login_callback when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($auth_login_callback) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $auth_login_callback when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['auth_login_callback'] = $auth_login_callback;
 
@@ -797,12 +797,12 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setPayOrderCallback($pay_order_callback)
     {
-        if ((mb_strlen($pay_order_callback) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $pay_order_callback when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($pay_order_callback) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $pay_order_callback when calling Dapp., must be smaller than or equal to 256.');
         }
-        if ((mb_strlen($pay_order_callback) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $pay_order_callback when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($pay_order_callback) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $pay_order_callback when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['pay_order_callback'] = $pay_order_callback;
 
@@ -828,12 +828,12 @@ class Dapp implements ModelInterface, ArrayAccess
      */
     public function setProofSubmitCallback($proof_submit_callback)
     {
-        if ((mb_strlen($proof_submit_callback) > 64)) {
-            throw new \InvalidArgumentException('invalid length for $proof_submit_callback when calling Dapp., must be smaller than or equal to 64.');
+        if ((mb_strlen($proof_submit_callback) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $proof_submit_callback when calling Dapp., must be smaller than or equal to 256.');
         }
-        if ((mb_strlen($proof_submit_callback) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $proof_submit_callback when calling Dapp., must be bigger than or equal to 1.');
-        }
+//        if ((mb_strlen($proof_submit_callback) < 1)) {
+//            throw new \InvalidArgumentException('invalid length for $proof_submit_callback when calling Dapp., must be bigger than or equal to 1.');
+//        }
 
         $this->container['proof_submit_callback'] = $proof_submit_callback;
 

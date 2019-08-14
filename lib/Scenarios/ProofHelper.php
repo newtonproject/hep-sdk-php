@@ -4,8 +4,10 @@
 namespace HepRestApi\Scenarios;
 
 use HepRestApi\ApiException;
+use HepRestApi\Model\CancelProofRequest;
 use HepRestApi\Model\CreateProofRequest;
 use HepRestApi\Model\RetrieveProofReceiptsRequest;
+use HepRestApi\Model\RetrieveProofRewardsRequest;
 
 class ProofHelper extends BaseHelper
 {
@@ -82,6 +84,76 @@ class ProofHelper extends BaseHelper
 
         $proof_request = new RetrieveProofReceiptsRequest($hmac_data);
         $response = $this->api_client->restProofsReceiptsCreate($this->api_version, $proof_request);
+
+        return $response;
+    }
+
+    /**
+     * @param string $proof_hash
+     * @return \HepRestApi\Model\ProofResponse
+     * @throws ApiException
+     */
+    public function read_proof($proof_hash)
+    {
+        $sign_data = $this->generate_sign_data();
+        $hmac_data = $this->sign_hmac($sign_data);
+
+        $response = $this->api_client->restProofsRead(
+            $this->api_version,
+            $proof_hash,
+            $hmac_data['dapp_key'],
+            $hmac_data['protocol'],
+            $hmac_data['version'],
+            $hmac_data['ts'],
+            $hmac_data['nonce'],
+            $hmac_data['os'],
+            $hmac_data['language'],
+            $hmac_data['dapp_signature_method'],
+            $hmac_data['dapp_signature']
+        );
+
+        return $response;
+    }
+
+    /**
+     * Get the proof reward by given proof data
+     * @param array $proof_data  the format is [["proof_hash"=>"...", "proof_item_id"=>"...", "proof_subitem_id"=>"..."],...]
+     * @return \HepRestApi\Model\RetrieveProofRewardsResponse
+     * @throws ApiException
+     */
+    public function get_proof_rewards($proof_data)
+    {
+        $params = [
+            'proof_data' => $proof_data
+        ];
+        $sign_data = $this->generate_sign_data($params);
+        $hmac_data = $this->sign_hmac($sign_data);
+
+        $request = new RetrieveProofRewardsRequest($hmac_data);
+        $response = $this->api_client->restProofsRewardsCreate($this->api_version, $request);
+
+        return $response;
+    }
+
+    /**
+     * cancel proof
+     * @param array $proof_data  the format is ["proof_hash"=>"...", "proof_item_id"=>"...", "proof_subitem_id"=>"..."]
+     * @return \HepRestApi\Model\CancelProofResponse
+     * @throws ApiException
+     */
+    public function cancel_proof($proof_data)
+    {
+        $proof_hash = $proof_data['proof_hash'];
+        unset($proof_data['proof_hash']);
+
+        $proof_data['dapp_id'] = $this->dapp_id;
+
+        $sign_data = $this->generate_sign_data($proof_data);
+        $hmac_data = $this->sign_hmac($sign_data);
+        $final_data = $this->sign_secp256r1($hmac_data);
+
+        $request = new CancelProofRequest($final_data);
+        $response = $this->api_client->restProofsDelete($this->api_version, $proof_hash, $request);
 
         return $response;
     }

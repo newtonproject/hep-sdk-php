@@ -299,7 +299,7 @@ class NewidResponse implements ModelInterface, ArrayAccess
      */
     public function setPublicKey($public_key)
     {
-        if ((mb_strlen($public_key) > 64)) {
+        if ((mb_strlen($public_key) > 130)) {
             throw new \InvalidArgumentException('invalid length for $public_key when calling NewidResponse., must be smaller than or equal to 64.');
         }
         if ((mb_strlen($public_key) < 1)) {
