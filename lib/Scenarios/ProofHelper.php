@@ -157,4 +157,24 @@ class ProofHelper extends BaseHelper
 
         return $response;
     }
+
+    /**
+     * Get the proof receipts by given proof hashes.
+     * @param array $proof_hashes list
+     * @return \HepRestApi\Model\RetrieveProofReceiptsResponse
+     * @throws ApiException
+     */
+    public function get_proof_receipts($proof_hashes)
+    {
+        $params = [
+            'proof_hashes' => $proof_hashes
+        ];
+        $sign_data = $this->generate_sign_data($params);
+        $hmac_data = $this->sign_hmac($sign_data);
+
+        $request = new RetrieveProofReceiptsRequest($hmac_data);
+        $response = $this->api_client->restProofsReceiptsCreate($this->api_version, $request);
+
+        return $response;
+    }
 }
