@@ -6,7 +6,11 @@ use Elliptic\EC;
 use kornrunner\Keccak;
 use Sop\CryptoEncoding\PEM;
 use Sop\CryptoTypes\Asymmetric\EC\ECPrivateKey;
+use Sop\CryptoTypes\Asymmetric\EC\ECPublicKey;
 use StephenHill\Base58;
+use Sop\CryptoTypes\AlgorithmIdentifier\Asymmetric\ECPublicKeyAlgorithmIdentifier;
+use ASN1\Type\Primitive\Integer;
+use Sop\CryptoTypes\Asymmetric\EC\ECConversion;
 
 class Utils
 {
@@ -272,5 +276,66 @@ class Utils
         } catch (\Exception $e) {
             return '';
         }
+    }
+
+    /**
+     * 生成私钥文件且返回公钥
+     * @param string $save_path
+     * @return string 
+     */
+    static function generate_secp256r1_key_pairs($save_path)
+    {
+        if (!self::check_path_available($save_path)) {
+            return false;
+        }
+
+        $ec      = new EC('p256');
+        $key     = $ec->genKeyPair();
+        $privkey = $key->getPrivate();
+        $pubkey  = $key->getPublic();
+
+        $ec_public_key = ECPublicKey::fromCoordinates(
+            $pubkey->getX()->toString(), //transfer to bigint
+            $pubkey->getY()->toString(),
+            ECPublicKeyAlgorithmIdentifier::CURVE_PRIME256V1
+        );
+
+        $x = $pubkey->getX()->jsonSerialize();
+        $y = $pubkey->getY()->jsonSerialize();
+        if (strlen($x) < 64) {
+            $x = str_pad($x, 64, "0", STR_PAD_LEFT);
+        }
+        if (strlen($y) < 64) {
+            $y = str_pad($y, 64, "0", STR_PAD_LEFT);
+        }
+        $public_key = "0x" . $x . $y;
+
+        $bits = $privkey->bitLength();
+        if (isset($bits)) {
+            $mlen = (int) ceil($bits / 8);
+        }
+        $private_key_os = ECConversion::integerToOctetString(new Integer($privkey->toString()), $mlen)->string();
+        $ec_private_key = new ECPrivateKey(
+            $private_key_os,
+            ECPublicKeyAlgorithmIdentifier::CURVE_PRIME256V1,
+            $ec_public_key->ECPoint()
+        );
+        $pem_str = $ec_private_key->toPEM()->string();
+        file_put_contents($save_path, $pem_str);
+
+        return $public_key;
+    }
+
+    static function check_path_available($save_path)
+    {
+        if (is_file($save_path) && is_writable($save_path)) {
+            return true;
+        } else {
+            $path = realpath(pathinfo($save_path, PATHINFO_DIRNAME));
+            if (is_dir($path) && is_writable($path)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
