@@ -286,7 +286,7 @@ class Utils
     static function generate_secp256r1_key_pairs($save_path)
     {
         if (!self::check_path_available($save_path)) {
-            return false;
+            throw new \Exception("The given path is not writable");
         }
 
         $ec      = new EC('p256');
