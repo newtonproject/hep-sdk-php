@@ -321,12 +321,12 @@ class Utils
             $ec_public_key->ECPoint()
         );
         $pem_str = $ec_private_key->toPEM()->string();
-        file_put_contents($save_path, $pem_str);
+        @file_put_contents($save_path, $pem_str);
 
         return $public_key;
     }
 
-    static function check_path_available($save_path)
+    private static function check_path_available($save_path)
     {
         if (is_file($save_path) && is_writable($save_path)) {
             return true;
